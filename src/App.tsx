@@ -45,6 +45,7 @@ function App() {
                       <Route path="invest" element={<a>Invest</a>} />
                       <Route path="casino" element={<a>Casino</a>} />
                       <Route path="lake" element={<a>Lake</a>} />
+                      <Route path="projects" element={<a>Projects</a>} />
                       <Route path="contact" element={<a>Contact</a>} />
                       <Route path="about" element={<a>About</a>} />
                       <Route path="*" element={<a>Not Found</a>} />

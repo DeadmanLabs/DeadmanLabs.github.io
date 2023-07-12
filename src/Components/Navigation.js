@@ -22,6 +22,7 @@ const Navigation = (props) => {
         "Invest": 'invest', 
         "Gamble": 'casino', 
         "Lake": 'lake', 
+        "Projects": 'projects',
         "Contact": 'contact', 
         "About": 'about'
     };
