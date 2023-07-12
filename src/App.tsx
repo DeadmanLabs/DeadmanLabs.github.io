@@ -15,6 +15,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Navigation from './Components/Navigation.js';
+import Home from './Components/Home.js';
 
 function App() {
   const [page, setPage] = useState("Home");
@@ -39,7 +40,7 @@ function App() {
                 <BrowserRouter>
                   <Routes>
                     <Route path="/" element={<Navigation className="mainNav" callback={setPage} page={page} />} >
-                      <Route index element={<a>Home</a>} />
+                      <Route index element={<Home />} />
                       <Route path="blog" element={<a>Blog</a>} />
                       <Route path="claw" element={<a>Claw</a>} />
                       <Route path="invest" element={<a>Invest</a>} />
