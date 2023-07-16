@@ -1,0 +1,45 @@
+.home 
+{
+    background-image: url("../../../public/Resources/Backgrounds/Beach.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    flex: 1 1 auto;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.side-display * {
+    display: inline-block;
+    padding: 14px 14px;
+    height: 100%;
+    width: 100%;
+}
+
+.left-side-display {
+    float: left;
+    height: 100%;
+    width: 15%;
+}
+
+.center-side-display {
+    float: center;
+    text-align: center;
+    height: 100%;
+    width: 50%;
+    background-color: rgb(122, 122, 122, 0.8);
+    border-radius: 15px;
+}
+
+.center-side-display .text {
+    margin-left: 14px;
+    margin-right: 14px;
+}
+
+.right-side-display {
+    float: right;
+    height: 100%;
+    width: 15%;
+}
