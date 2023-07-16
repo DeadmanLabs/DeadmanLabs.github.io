@@ -1,22 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.e85d9b75.css",
-    "main.js": "/static/js/main.1aed5dad.js",
+    "main.css": "/static/css/main.b72e997e.css",
+    "main.js": "/static/js/main.c022cbc6.js",
     "static/js/915.68cfd6e5.chunk.js": "/static/js/915.68cfd6e5.chunk.js",
     "static/js/787.41ef8486.chunk.js": "/static/js/787.41ef8486.chunk.js",
+    "static/media/Beach.jpg": "/static/media/Beach.0602c48fb79a4b432644.jpg",
+    "static/media/BedTime.jpg": "/static/media/BedTime.053f18ad749cc79cfdfa.jpg",
     "static/media/CasinoN.png": "/static/media/CasinoN.2e66c51897c56b1a973d.png",
     "static/media/ClawN.png": "/static/media/ClawN.c180885cc0d2b7fe7565.png",
     "static/media/BlogN.png": "/static/media/BlogN.6a8149b6dc58e69c2e36.png",
     "static/media/HomeN.png": "/static/media/HomeN.d7e93d7dd12f572c86b4.png",
     "static/media/ContactN.png": "/static/media/ContactN.2a890477374b558f4c2c.png",
     "index.html": "/index.html",
-    "main.e85d9b75.css.map": "/static/css/main.e85d9b75.css.map",
-    "main.1aed5dad.js.map": "/static/js/main.1aed5dad.js.map",
+    "static/media/ExampleBlogPost.md": "/static/media/ExampleBlogPost.31d6cfe0d16ae931b73c.md",
+    "main.b72e997e.css.map": "/static/css/main.b72e997e.css.map",
+    "main.c022cbc6.js.map": "/static/js/main.c022cbc6.js.map",
     "915.68cfd6e5.chunk.js.map": "/static/js/915.68cfd6e5.chunk.js.map",
     "787.41ef8486.chunk.js.map": "/static/js/787.41ef8486.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e85d9b75.css",
-    "static/js/main.1aed5dad.js"
+    "static/css/main.b72e997e.css",
+    "static/js/main.c022cbc6.js"
   ]
 }
