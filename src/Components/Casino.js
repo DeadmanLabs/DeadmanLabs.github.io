@@ -27,8 +27,8 @@ const Casino = (props) => {
     }, [connection, publicKey]);
 
     return (
-        <>
-        </>
+        <div>
+        </div>
     );
 }
 

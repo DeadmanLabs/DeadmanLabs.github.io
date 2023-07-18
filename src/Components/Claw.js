@@ -6,7 +6,7 @@ import { Outlet, Link } from 'react-router-dom';
 
 import io from 'socket.io-client';
 
-import './Styles/...';
+import './Styles/Claw.css';
 
 const Claw = (props) => {
     const { connection } = useConnection();
@@ -44,7 +44,10 @@ const Claw = (props) => {
     }, [connection, publicKey, setSocket]);
 
     return (
-        <>
+        <div className="claw">
+            <video autoPlay muted loop>
+                <source src="" type="" />
+            </video>
             { socket ? (
                 <div className="claw-game">
                     <div className="controller up" />
@@ -57,7 +60,7 @@ const Claw = (props) => {
             ): (
                 <div>Not Connected</div>
             )}
-        </>
+        </div>
     );
 }
 

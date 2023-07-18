@@ -27,8 +27,8 @@ const Lake = (props) => {
     }, [connection, publicKey]);
 
     return (
-        <>
-        </>
+        <div>
+        </div>
     );
 }
 

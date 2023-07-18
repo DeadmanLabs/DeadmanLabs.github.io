@@ -1,6 +1,6 @@
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 import { WalletNotConnectedError, WalletSignTransactionError } from '@solana/wallet-adapter-base';
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import React, { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import { LAMPORTS_PER_SOL } from '@solana/web3.js';
 
 const TradingViewWidget = (props: any) => {
@@ -69,6 +69,38 @@ const TradingViewWidget = (props: any) => {
             </div>
         </div>
     );
+}
+
+const WebRTCVideoPlayer = (props: any) => {
+    const videoRef = useRef(null);
+    useEffect(() => {
+        const remoteDescription = new RTCSessionDescription({
+            type: '',
+            sdp: ''
+        });
+        const iceCandidate = new RTCIceCandidate({
+
+        });
+
+        const pc = new RTCPeerConnection({
+            iceServers: [
+                { urls: '' },
+                { urls: '', username: '', credential: '' },
+            ]
+        });
+
+        pc.ontrack = event => {
+            if (videoRef.current && event.streams[0]) {
+                videoRef.current.srcObject = event.streams[0];
+            }
+        };
+
+        pc.setRemoteDescription(remoteDescription)
+            .then(() => pc.addIceCandidate(iceCandidate))
+            .catch(console.error);
+    }, []);
+
+    return <video ref={videoRef} autoPlay muted />
 }
 
 export { TradingViewWidget };

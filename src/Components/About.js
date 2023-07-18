@@ -27,8 +27,8 @@ const About = (props) => {
     }, [connection, publicKey]);
 
     return (
-        <>
-        </>
+        <div>
+        </div>
     );
 }
 

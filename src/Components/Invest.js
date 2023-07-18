@@ -27,8 +27,8 @@ const Invest = (props) => {
     }, [connection, publicKey]);
 
     return (
-        <>
-        </>
+        <div>
+        </div>
     );
 }
 

@@ -27,8 +27,8 @@ const Projects = (props) => {
     }, [connection, publicKey]);
 
     return (
-        <>
-        </>
+        <div>
+        </div>
     );
 }
 
