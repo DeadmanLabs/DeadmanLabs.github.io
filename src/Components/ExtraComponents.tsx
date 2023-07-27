@@ -280,4 +280,71 @@ const AudioRecorder = (props: audioPropRequirements) => {
     );
 }
 
-export { TradingViewWidget, AudioUploader, AudioRecorder }
+interface fileUploaderProps {
+    url: string,
+    acceptedFileTypes: string,
+    allowMultiple: boolean
+}
+
+const FileUploader = (props: fileUploaderProps) => {
+    const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            const files = Array.from(event.target.files) as File[];
+            setSelectedFiles(files);
+        }
+    };
+    const uploadFiles = () => {
+        selectedFiles.forEach((file) => {
+            const formData = new FormData();
+            formData.append('file', file);
+            Axios.post(props.url, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            })
+            .then((response) => {
+                console.log('File upload successful!');
+            })
+            .catch((error) => {
+                console.error('Error uploading file:', error);
+            });
+        });
+    }
+
+    return (
+        <div className="file-uploader">
+            <input type="file" multiple onChange={handleFileChange} />
+            <button className="upload-button" onClick={uploadFiles}>Upload</button>
+        </div>
+    )
+}
+
+interface LiveImageViewerProps {
+    url: string
+}
+
+const LiveImageViewer = (props: LiveImageViewerProps) => {
+    const [image, setImage] = useState<string | null>(null);
+
+    useEffect(() => {
+        const socket = io(props.url);
+        socket.on('image_update', data => {
+            setImage(data);
+        });
+
+        return () => {
+            socket.disconnect();
+        };
+    }, [props.url]);
+
+    return (
+        <div>
+            {image && (
+                <img src={image} alt="Image" />    
+            )}
+        </div>
+    )
+}
+
+export { TradingViewWidget, AudioUploader, AudioRecorder, FileUploader, LiveImageViewer }
