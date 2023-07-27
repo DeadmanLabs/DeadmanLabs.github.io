@@ -280,8 +280,4 @@ const AudioRecorder = (props: audioPropRequirements) => {
     );
 }
 
-
-
-
-
 export { TradingViewWidget, AudioUploader, AudioRecorder }
