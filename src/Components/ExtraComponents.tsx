@@ -3,6 +3,7 @@ import { WalletNotConnectedError, WalletSignTransactionError } from '@solana/wal
 import React, { useState, useCallback, useEffect, useMemo, useRef, MutableRefObject } from 'react';
 import { LAMPORTS_PER_SOL } from '@solana/web3.js';
 import io, { Socket } from 'socket.io-client';
+import Axios from 'axios';
 
 const TradingViewWidget = (props: any) => {
     let symbols = {
@@ -174,4 +175,113 @@ const WebRTCWatch = () => {
     );
 }
 
-export { TradingViewWidget }
+interface audioPropRequirements {
+    url: string;
+}
+
+const AudioUploader = (props: audioPropRequirements) => {
+    const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            const files = Array.from(event.target.files) as File[];
+            setSelectedFiles(files);
+        }
+    };
+    const uploadFiles = () => {
+        selectedFiles.forEach((file) => {
+            const formData = new FormData();
+            formData.append('audio', file);
+            Axios.post(props.url, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+            })
+            .then((response) => {
+                console.log('Audio upload successful!');
+            })
+            .catch((error) => {
+                console.error('Error uploading audio:', error);
+            });
+        });
+    }
+
+    return (
+        <div className="audio-uploader">
+            <input type="file" multiple onChange={handleFileChange} />
+            <button className="upload-button" onClick={uploadFiles}>Upload</button>
+        </div>
+    );
+}
+
+const AudioRecorder = (props: audioPropRequirements) => {
+    const [isRecording, setIsRecording] = useState(false);
+    const audioRef = useRef<MediaRecorder | null>(null);
+
+    const handleRecordStart = () => {
+        setIsRecording(true);
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then((stream) => {
+                const mediaRecorder = new MediaRecorder(stream);
+                const audioChunks: BlobPart[] = [];
+
+                mediaRecorder.addEventListener('dataavailable', (event) => {
+                    audioChunks.push(event.data);
+                });
+
+                mediaRecorder.addEventListener('stop', () => {
+                    const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+                    uploadAudio(audioBlob);
+                });
+
+                mediaRecorder.start();
+                audioRef.current = mediaRecorder;
+            })
+            .catch((error) => {
+                console.error('Error accessing microphone:', error);
+            });
+    };
+
+    const handleRecordEnd = () => {
+        setIsRecording(false);
+        if (audioRef.current) {
+            audioRef.current.stop();
+        }
+    };
+
+    const uploadAudio = (audioBlob: Blob) => {
+        const formData = new FormData();
+        formData.append('audio', audioBlob);
+        Axios.post(props.url, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
+        .then((repsonse) => {
+            console.log('Audio upload successful!');
+        })
+        .catch((error) => {
+            console.error('Error uploading audio:', error);
+        });
+    };
+
+    return (
+        <div className="audio-recorder">
+            {isRecording ? <>
+                <button className="record-button active" onMouseUp={handleRecordEnd}>
+                    Release to stop recording
+                </button>
+            </> : <>
+                <button className="record-button" onMouseDown={handleRecordStart}>
+                    Press and hold to record
+                </button>
+            </>
+            }
+        </div>
+    );
+}
+
+
+
+
+
+export { TradingViewWidget, AudioUploader, AudioRecorder }
