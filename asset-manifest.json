@@ -1,12 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.89a42682.css",
-    "main.js": "/static/js/main.371b3562.js",
+    "main.css": "/static/css/main.70643e28.css",
+    "main.js": "/static/js/main.843ed1b4.js",
     "static/js/648.60705ed4.chunk.js": "/static/js/648.60705ed4.chunk.js",
     "static/js/227.fbc78cb1.chunk.js": "/static/js/227.fbc78cb1.chunk.js",
     "static/js/453.7d770832.chunk.js": "/static/js/453.7d770832.chunk.js",
+    "static/media/Crickets.jpg": "/static/media/Crickets.12dcd60f91f81e4015b1.jpg",
     "static/media/Beach.jpg": "/static/media/Beach.0602c48fb79a4b432644.jpg",
+    "static/media/StaryMountians.jpg": "/static/media/StaryMountians.dda2b3000b4f85de2540.jpg",
+    "static/media/Interstellar.jpg": "/static/media/Interstellar.6a18c92e5d713a54d62c.jpg",
     "static/media/BedTime.jpg": "/static/media/BedTime.053f18ad749cc79cfdfa.jpg",
+    "static/media/SunsetLake.jpg": "/static/media/SunsetLake.cb84fc9c783e93c7da12.jpg",
+    "static/media/WorldsEnd.jpg": "/static/media/WorldsEnd.838b5e0641cd76008fcb.jpg",
+    "static/media/LavaFalls.jpg": "/static/media/LavaFalls.5321ea0d6b7e2ae5bf4b.jpg",
     "static/media/CasinoN.png": "/static/media/CasinoN.2e66c51897c56b1a973d.png",
     "static/media/ProjectsN.png": "/static/media/ProjectsN.9c45ed16abb1c725f496.png",
     "static/media/ClawN.png": "/static/media/ClawN.c180885cc0d2b7fe7565.png",
@@ -14,14 +20,14 @@
     "static/media/HomeN.png": "/static/media/HomeN.d7e93d7dd12f572c86b4.png",
     "static/media/ContactN.png": "/static/media/ContactN.2a890477374b558f4c2c.png",
     "index.html": "/index.html",
-    "main.89a42682.css.map": "/static/css/main.89a42682.css.map",
-    "main.371b3562.js.map": "/static/js/main.371b3562.js.map",
+    "main.70643e28.css.map": "/static/css/main.70643e28.css.map",
+    "main.843ed1b4.js.map": "/static/js/main.843ed1b4.js.map",
     "648.60705ed4.chunk.js.map": "/static/js/648.60705ed4.chunk.js.map",
     "227.fbc78cb1.chunk.js.map": "/static/js/227.fbc78cb1.chunk.js.map",
     "453.7d770832.chunk.js.map": "/static/js/453.7d770832.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.89a42682.css",
-    "static/js/main.371b3562.js"
+    "static/css/main.70643e28.css",
+    "static/js/main.843ed1b4.js"
   ]
 }
