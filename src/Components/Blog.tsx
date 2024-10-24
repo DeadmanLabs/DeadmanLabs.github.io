@@ -3,7 +3,11 @@ import { getAllPosts } from './utils/loadPosts';
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
 import { v4 as uuidv4 } from 'uuid';
+import ReactMarkdown from 'react-markdown';
+import rehypeHighlight from 'rehype-highlight';
 import background from '../Resources/Backgrounds/BedTime.jpg';
+
+import 'highlight.js/styles/default.css';
 
 interface Post {
   id: string;
@@ -18,6 +22,7 @@ interface Post {
 const Blog: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
   const [formData, setFormData] = useState({
     author: '',
     title: '',
@@ -56,7 +61,7 @@ const Blog: React.FC = () => {
       zip.file('post.md', `${formData.body}`);
 
       if (formData.image) {
-        zip.file('graphic.jpg', formData.image.name);
+        zip.file('graphic.jpg', formData.image);
       }
     }
 
@@ -72,16 +77,15 @@ const Blog: React.FC = () => {
         className="absolute top-4 left-4 bg-green-500 text-white p-2 w-10 h-10 rounded-md hover:bg-green-700 flex items-center justify-center"
         onClick={() => setIsModalOpen(true)}
       >
-        +
+        ＋
       </button>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {posts.map(post => (
-          <div key={post.id} className="bg-gray-800 p-4 rounded-lg shadow-lg">
-            <img src={`/src/Posts/${post.id}/${post.graphic}`} alt={post.title} className="w-full h-48 object-cover rounded-lg mb-4" />
+          <div key={post.id} className="bg-gray-800 p-4 rounded-lg shadow-lg" onClick={() => setSelectedPost(post)}>
+            <img src={`/Posts/${post.id}/graphic.jpg`} alt={post.title} className="w-full h-48 object-cover rounded-lg mb-4" />
             <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
             <h3 className="text-xl mb-2">{post.subtitle}</h3>
             <p className="text-sm text-gray-400 mb-2">By {post.author} on {new Date(post.date).toLocaleDateString()}</p>
-            <p className="text-gray-300">{post.content.substring(0, 100)}...</p>
           </div>
         ))}
       </div>
@@ -139,6 +143,54 @@ const Blog: React.FC = () => {
             >
               Done
             </button>
+          </div>
+        </div>
+      )}
+
+      {selectedPost && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+          <div
+            className="bg-gray-900 text-white rounded-lg shadow-lg w-full max-w-screen-lg mx-4 my-4 overflow-hidden relative"
+            style={{ maxHeight: 'calc(100vh - 2rem)' }}
+          >
+            <div className="relative">
+              <img
+                src={`/Posts/${selectedPost.id}/graphic.jpg`}
+                alt={selectedPost.title}
+                className="w-full h-64 object-cover"
+              />
+              <button
+                className="absolute top-2 right-2 text-white hover:text-gray-400 text-3xl font-bold"
+                onClick={() => setSelectedPost(null)}
+              >
+                &times;
+              </button>
+            </div>
+            <div
+              className="p-6 overflow-y-auto"
+              style={{ maxHeight: 'calc(100vh - 16rem)' }}
+            >
+              <div className="flex flex-row justify-between items-start mb-4">
+                <div className="text-left">
+                  <h1 className="text-3xl font-bold">{selectedPost.title}</h1>
+                  <h2 className="text-xl text-gray-400">
+                    {selectedPost.subtitle}
+                  </h2>
+                </div>
+                <div className="text-gray-400 text-right">
+                  <p>By {selectedPost.author}</p>
+                  <p>{new Date(selectedPost.date).toLocaleDateString()}</p>
+                </div>
+              </div>
+              <div className="prose prose-lg text-white max-w-none text-left">
+                <ReactMarkdown
+                  rehypePlugins={[rehypeHighlight]}
+                  className="prose prose-lg text-white"
+                >
+                  {selectedPost.content}
+                </ReactMarkdown>
+              </div>
+            </div>
           </div>
         </div>
       )}
